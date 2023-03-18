@@ -3,8 +3,9 @@
 /**
  * main - prints the alphapet in lowercase,
  * follewed by a new line, except q and e
- * Return Always 0 (success)
+ * Return: Always 0 (success)
  */
+
 int main(void)
 {
 	char ch;
@@ -17,5 +18,5 @@ int main(void)
 		}
 	}
 	putchar('\n');
-	return(0);
+	return (0);
 }

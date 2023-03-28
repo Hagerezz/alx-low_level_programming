@@ -16,7 +16,7 @@ void puts2(char *str)
 	while (ch != '\0')
 	{
 		if (n % 2 == 0)
-			printf("%s", str[n]);
+			printf("%c", str[n]);
 		ch = str[++n];
 	}
 	printf("\n");

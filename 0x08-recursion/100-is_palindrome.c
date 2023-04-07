@@ -13,7 +13,7 @@
 
 int palindrome(char *s, int l, int p)
 {
-	if (l >= 2 * p)
+	if (l > 2 * p)
 		return (1);
 	if (s[p] != s[l - p])
 		return (0);
@@ -29,5 +29,6 @@ int palindrome(char *s, int l, int p)
 int is_palindrome(char *s)
 {
 	int a = strlen(s);
+
 	return (palindrome(s, a - 1, 0));
 }

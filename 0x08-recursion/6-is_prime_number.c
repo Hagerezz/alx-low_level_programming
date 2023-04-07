@@ -5,7 +5,6 @@
  * is_prime - calculates if a number is prime recursively
  * @a: input
  * @b: input
- * @n: input
  * Return: 0 (if n is not prime
  */
 

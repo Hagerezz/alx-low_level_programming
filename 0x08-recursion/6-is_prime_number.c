@@ -9,8 +9,7 @@
  */
 
 /**
- * is_prime - returns 1 if input is prime number
- * and 0 if not
+ * is_prime - calculates if a number is prime recursively
  * @a: input
  * @b: input
  * @n: input

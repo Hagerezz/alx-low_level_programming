@@ -10,9 +10,13 @@ int _strlen_recursion(char *s);
  * Return: 1 (if a string is palindrome)
  */
 
-int is_palindrome(char *s)
+int is_palindrome(char *s, int l, int p)
 {
-	
+	if (l => 2 * p)
+		return (1);
+	if (s[p] != s[l - p])
+		return (0);
+	return (is_palindrome(s, l, p + 1));
 }
 
 /**
@@ -30,5 +34,5 @@ int _strlen_recursion(char *s)
 		a++;
 		a += _strlen_recursion(s + 1);
 	}
-	return (a);
+	return (is_palindrome(s, a - 1, 0));
 }

@@ -9,7 +9,8 @@
  */
 
 /**
- * is_prime - returns 1 if input is prime
+ * is_prime - returns 1 if input is prime number
+ * and 0 if not
  * @a: input
  * @b: input
  * @n: input

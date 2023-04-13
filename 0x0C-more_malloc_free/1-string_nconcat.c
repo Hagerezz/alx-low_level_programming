@@ -10,7 +10,7 @@
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	int l1 = 0, l2 = 0, i;
+	unsigned int l1 = 0, l2 = 0, i;
 	char *p;
 
 	while (s1 != NULL && s1[l1] != '\0')

@@ -20,8 +20,8 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		return (NULL);
 	if (new_size == old_size)
 		return (ptr);
-	h = (void *)malloc(new_Size);
-	for (i = 0; i < old_size && i < new_Size; i++)
+	h = (void *)malloc(new_size);
+	for (i = 0; i < old_size && i < new_size; i++)
 		h[i] = ptr[i];
 	return (h);
 }

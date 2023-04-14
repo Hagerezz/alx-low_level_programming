@@ -1,7 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
-#define ERR_MSG "Error"
+
 /**
  * is_digit - checks if a string contains a non-digit char
  * @s: string to be evaluated
@@ -33,7 +33,7 @@ void errors(void)
  * @argv: array of arguments
  * Return: always 0 (Success)
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	char *s1, *s2;
 	long int digit1, digit2;

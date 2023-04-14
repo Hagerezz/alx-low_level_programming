@@ -20,14 +20,6 @@ int is_digit(char *s)
 	return (1);
 }
 /**
- * errors - handles errors for main
- */
-void errors(void)
-{
-	printf("Error\n");
-	exit(98);
-}
-/**
  * main - multiplies two positive numbers
  * @argc: number of arguments
  * @argv: array of arguments
@@ -36,11 +28,14 @@ void errors(void)
 int main(int argc, char **argv)
 {
 	char *s1, *s2;
-	long int digit1, digit2;
+	unsigned long int digit1, digit2;
 
 	s1 = argv[1], s2 = argv[2];
 	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
-		errors();
+	{
+		printf("Error\n");
+		exit(98);
+	}
 	sscanf(s1, "%ld", &digit1);
 	sscanf(s2, "%ld", &digit2);
 	printf("%ld\n", digit1 * digit2);

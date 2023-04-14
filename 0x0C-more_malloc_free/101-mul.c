@@ -36,13 +36,13 @@ void errors(void)
 int main(int argc, char *argv[])
 {
 	char *s1, *s2;
-	int digit1, digit2;
+	long int digit1, digit2;
 
 	s1 = argv[1], s2 = argv[2];
 	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
 		errors();
-	sscanf(s1, "%d", &digit1);
-	sscanf(s2, "%d", &digit2);
-	printf("%d\n", digit1 * digit2);
+	sscanf(s1, "%ld", &digit1);
+	sscanf(s2, "%ld", &digit2);
+	printf("%ld\n", digit1 * digit2);
 	return (0);
 }

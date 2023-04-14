@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * *_realloc - reallocates a memory block 
+ * *_realloc - reallocates a memory block
  * @ptr: pointer to the memory previsouly allocated by malloc
  * @old_size: size of the allocated memory for ptr
  * @new_size: new size of the new memory block
@@ -12,7 +12,6 @@
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	unsigned int i;
-
 	char *h;
 
 	if (ptr == NULL)

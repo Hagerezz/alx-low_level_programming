@@ -29,7 +29,7 @@ int is_digit(char *s)
 int main(int argc, char **argv)
 {
 	char *s1, *s2;
-	int digit1[strlen(argv[1])], digit2[strlen(argv[2])], res[strlen(argv[1]) + strlen(argv[2]) - 1];
+	int *digit1, *digit2, *res;
 	int i, j;
 
 	s1 = argv[1];
@@ -39,6 +39,9 @@ int main(int argc, char **argv)
 		printf("Error\n");
 		exit(98);
 	}
+	digit1 = (int *)malloc(sizeof(int) * strlen(s1));
+	digit2 = (int *)malloc(sizeof(int) * strlen(s2));
+	res = (int *)malloc(sizeof(int) * (strlen(s2) + strlen(s1) - 1));
 	for (i = 0; i < strlen(s1) + strlen(s2) - 1; i++)
 		res[i] = 0;
 	for (i = 0; i < strlen(s1); i++)

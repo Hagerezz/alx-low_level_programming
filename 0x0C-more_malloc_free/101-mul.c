@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 /**
  * is_digit - checks if a string contains a non-digit char
@@ -28,16 +29,34 @@ int is_digit(char *s)
 int main(int argc, char **argv)
 {
 	char *s1, *s2;
-	unsigned long int digit1, digit2;
+	int digit1[strlen(argv[1])], digit2[strlen(argv[2])], res[strlen(argv[1]) + strlen(argv[2]) - 1];
+	int i, j;
 
-	s1 = argv[1], s2 = argv[2];
+	s1 = argv[1];
+	s2 = argv[2];
 	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
 	{
 		printf("Error\n");
 		exit(98);
 	}
-	sscanf(s1, "%ld", &digit1);
-	sscanf(s2, "%ld", &digit2);
-	printf("%ld\n", digit1 * digit2);
+	for (i = 0; i < strlen(s1) + strlen(s2) - 1; i++)
+		res[i] = 0;
+	for (i = 0; i < strlen(s1); i++)
+		digit1[i] = s1[i] - '0';
+	for (i = 0; i < strlen(s2); i++)
+		digit2[i] = s2[i] - '0';
+	for (i = strlen(s1) - 1; i >= 0; i--)
+	{
+		for (j = strlen(s2) - 1; j >= 0; j--)
+			res[i + j] += digit1[i] * digit2[j];
+	}
+	for (i = strlen(s1) + strlen(s2) - 2; i > 0; i--)
+	{
+		res[i - 1] += res[i] / 10;
+		res[i] /= 10;
+	}
+	for (i = 0; i < strlen(s1) + strlen(s2) - 1; i++)
+		printf("%d",res[i]);
+	printf("\n");
 	return (0);
 }

@@ -22,6 +22,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		return (ptr);
 	h = (char *)malloc(new_size);
 	for (i = 0; i < old_size && i < new_size; i++)
-		h[i] = ptr[i];
+		h[i] = ((char *)ptr)[i];
 	return ((void *)h);
 }

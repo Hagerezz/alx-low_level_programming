@@ -10,7 +10,7 @@
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *node;
+	list_t *node, *tail;
 
 	node = malloc(sizeof(list_t));
 	if (node == NULL)
@@ -23,20 +23,9 @@ list_t *add_node_end(list_t **head, const char *str)
 		*head = node;
 		return (node);
 	}
-	return (add_tail(*head, node));
-}
-/**
- * *add_tail - add to yhe tail
- * @node: pointer to node in the list
- * @tail: pointer to the tail in the list
- * Return: pointer to the tail
- */
-list_t *add_tail(list_t *node, list_t *tail)
-{
-	if (node->next == NULL)
-	{
-		node->next = tail;
-		return (tail);
-	}
-	return (add_tail(node->next, tail));
+	tail = *head->next;
+	while (tail->next != NULL)
+		tail = tail->next;
+	tail->next = node;
+	return (node);
 }

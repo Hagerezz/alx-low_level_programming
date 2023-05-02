@@ -11,7 +11,7 @@ void free_list(listint_t *h);
 void free_listint2(listint_t **head)
 {
 	free_list(*head);
-	*head == NULL;
+	*head = NULL;
 }
 
 void free_list(listint_t *h)

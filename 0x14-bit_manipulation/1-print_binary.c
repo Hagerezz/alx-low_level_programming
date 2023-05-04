@@ -9,8 +9,6 @@ void print_binary(unsigned long int n)
 {
 	unsigned int b = 1;
 
-	if (n == 0 || n == 1)
-		printf("%ld\n", n);
 	while (n >= (1 << b))
 		b++;
 	b--;

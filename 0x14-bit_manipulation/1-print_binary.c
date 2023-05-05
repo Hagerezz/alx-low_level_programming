@@ -19,8 +19,5 @@ void print_binary(unsigned long int n)
 		}
 		else
 			_putchar('0');
-		if (b == 0)
-			break;
-		b--;
 	}
 }

@@ -6,11 +6,11 @@
  */
 void print_binary(unsigned long int n)
 {
-	int b = 0;
+	unsigned long int b = 0;
 
 	while (n >= (1 << (b + 1)))
 		b++;
-	while (b >= 0)
+	while (1)
 	{
 		if (n >= (1 << b))
 		{
@@ -19,6 +19,8 @@ void print_binary(unsigned long int n)
 		}
 		else
 			_putchar('0');
+		if (b == 0)
+			break;
 		b--;
 	}
 }

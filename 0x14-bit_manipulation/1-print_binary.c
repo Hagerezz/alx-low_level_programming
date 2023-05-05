@@ -6,10 +6,13 @@
  */
 void print_binary(unsigned long int n)
 {
-	unsigned long int b = 0, i;
+	unsigned long int b = 0, i = 1;
 
-	while (n >= (1 << (b + 1)))
+	while (n >= i)
+	{
 		b++;
+		i = i << 1;
+	}
 	for (i = b + 1; i >= 1; i--)
 	{
 		if (n >= (1 << (i - 1)))

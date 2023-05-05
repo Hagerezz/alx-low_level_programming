@@ -10,11 +10,10 @@ void print_binary(unsigned long int n)
 
 	if (n == 0)
 		_putchar('0');
-	while (n >= i)
+	while (n >= (i << 1))
 	{
 		i = i << 1;
 	}
-	i = i >> 1;
 	while (i > 0)
 	{
 		if (n & i)

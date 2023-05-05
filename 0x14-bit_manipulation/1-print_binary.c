@@ -10,12 +10,12 @@ void print_binary(unsigned long int n)
 
 	while (n >= (1 << (b + 1)))
 		b++;
-	for (i = b; i >= 0; i--)
+	for (i = b + 1; i >= 1; i--)
 	{
-		if (n >= (1 << i))
+		if (n >= (1 << (i - 1)))
 		{
 			_putchar('1');
-			n -= (1 << i);
+			n -= (1 << (i - 1));
 		}
 		else
 			_putchar('0');

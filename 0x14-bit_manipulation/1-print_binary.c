@@ -8,10 +8,11 @@ void print_binary(unsigned long int n)
 {
 	unsigned long int i = 1;
 
-	while (n > i)
+	while (n >= i)
 	{
 		i = i << 1;
 	}
+	i = i >> 1;
 	while (i > 0)
 	{
 		if (n & i)

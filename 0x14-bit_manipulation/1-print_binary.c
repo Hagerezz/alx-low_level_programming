@@ -7,14 +7,13 @@
  */
 void print_binary(unsigned long int n)
 {
-	unsigned int b = 1;
+	long int b = 0;
 
-	while (n >= (1 << b))
+	while (n >= (1 << (b + 1)))
 		b++;
-	b--;
 	while (b >= 0)
 	{
-		if (n - (1 << b) >= 0)
+		if (n >= (1 << b))
 		{
 			printf("1");
 			n -= (1 << b);

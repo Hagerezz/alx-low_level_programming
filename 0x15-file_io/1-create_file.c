@@ -14,7 +14,7 @@ int create_file(const char *filename, char *text_content)
 	ssize_t b;
 	ssize_t len = strlen(text_content);
 
-	if (filename == NULL || text_content == 0)
+	if (filename == NULL || text_content == NULL)
 		return (-1);
 	file = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
 	if (file == -1)

@@ -21,8 +21,13 @@ int create_file(const char *filename, char *text_content)
 	file = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
 	if (file == -1)
 		return (-1);
+	if (text_content == NULL)
+		close(file);
+		return (1);
 	if (len != 0)
+	{
 		b = write(file, text_content, len);
-	close(file);
-	return (b == len ? 1 : -1);
+		close(file);
+		return (b == len ? 1 : -1);
+	}
 }

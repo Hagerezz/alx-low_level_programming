@@ -22,14 +22,7 @@ int create_file(const char *filename, char *text_content)
 	if (file == -1)
 		return (-1);
 	if (len != 0)
-	{
 		b = write(file, text_content, len);
-		close(file);
-		return (b == len ? 1 : -1);
-	}
-	if (len == 0)
-	{
-		close(file);
-		return (1);
-	}
+	close(file);
+	return (b == len ? 1 : -1);
 }

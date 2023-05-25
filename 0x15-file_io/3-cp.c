@@ -2,29 +2,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char *cc(char *f, int a);
+char *creat(char *f);
+void clos(int a);
+
 /**
- * cc - allocate and close
+ * create_buffer - Allocate
  * @f: pointer
- * @a: file
  * Return: pointer
  */
-char *cc(char *f, int a)
+char *creat(char *f)
 {
 	char *b = malloc(sizeof(char) * 1024);
-	int c = close(a);
 
-	if (b == NULL)
+	if (!b)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", f);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
 		exit(99);
 	}
-	if (c == -1)
+	return (b);
+}
+/**
+ * clos - Close
+ * @a: integer
+ */
+void clos(int a)
+{
+	int d = close(a);
+
+	if (d == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", a);
 		exit(100);
 	}
-	return (b);
 }
 /**
  * main - copy
@@ -35,7 +44,7 @@ char *cc(char *f, int a)
 int main(int c, char *v[])
 {
 	int w;
-	char *b = cc(v[2]);
+	char *b = creat(v[2]);
         int f = open(v[1], O_RDONLY);
         int r = read(f, b, 1024);
         int o = open(v[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
@@ -68,7 +77,7 @@ int main(int c, char *v[])
 
 	} while (r > 0);
 	free(b);
-	cc(f);
-	cc(o);
+	clos(f);
+	clos(o);
 	return (0);
 }

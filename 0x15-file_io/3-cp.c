@@ -59,5 +59,5 @@ int main(int c, char **v)
 		dprintf(STDERR_FILENO, CLOSE, f);
 		exit(100);
 	}
-	return (EXIT_SUCCESS)
+	return (EXIT_SUCCESS);
 }

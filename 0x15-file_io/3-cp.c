@@ -62,7 +62,7 @@ int main(int x, char *y[])
 		if (o == -1 || w == -1)
 		{
 			dprintf(STDERR_FILENO,
-				"Error: Can't write to %s\n", argv[2]);
+				"Error: Can't write to %s\n", y[2]);
 			free(b);
 			exit(99);
 		}

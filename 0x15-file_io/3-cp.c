@@ -2,82 +2,62 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char *creat(char *f);
-void clos(int a);
-
-/**
- * create_buffer - Allocate
- * @f: pointer
- * Return: pointer
- */
-char *creat(char *f)
-{
-	char *b = malloc(sizeof(char) * 1024);
-
-	if (!b)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", f);
-		exit(99);
-	}
-	return (b);
-}
-/**
- * clos - Close
- * @a: integer
- */
-void clos(int a)
-{
-	int d = close(a);
-
-	if (d == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", a);
-		exit(100);
-	}
-}
+#define USE "Usage: cp file_from file_to\n"
+#define READ "Error: Can't read from file %s\n"
+#define WRITE "Error: Can't write to %s\n"
+#define close "Can't close fd %d\n"
+#define PER (O_WRONLY | O_CREAT | O_TRUNC)
+#define PERS (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP |S_IROTH)
 /**
  * main - copy
- * @c: number
  * @v: pointer
- * Return: 0 (success)
+ * @c: integer
+ * Return: 1 (success)
  */
-int main(int c, char *v[])
+int main(int c, char **v)
 {
-	int w;
-	char *b = creat(v[2]);
-        int f = open(v[1], O_RDONLY);
-        int r = read(f, b, 1024);
-        int o = open(v[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	ssize_t a;
+	int f = 0;
+	int t = 0;
+	char b[1024];
 
 	if (c != 3)
-	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, USE);
 		exit(97);
+	f = open(v[1], O_RDONLY);
+	if (f == -1)
+	{
+		dprintf(STDERR_FILENO, READ, v[1]);
+		exit(98);
 	}
-	do {
-		if (f == -1 || r == -1)
+	t = open(v[2], PER, PERS);
+	if (t == -1)
+	{
+		dprintf(STDERR_FILENO, WRITE, v[2]);
+		exit(99);
+	}
+	while ((a = read(f, b, 1024)) > 0)
+		if (write(t, b, a) != a)
 		{
-			dprintf(STDERR_FILENO,
-				"Error: Can't read from file %s\n", v[1]);
-			free(b);
-			exit(98);
-		}
-
-		w = write(o, b, r);
-		if (o == -1 || w == -1)
-		{
-			dprintf(STDERR_FILENO,
-				"Error: Can't write to %s\n", v[2]);
-			free(b);
+			dprintf(STDERR_FILENO, WRITE, v[2]);
 			exit(99);
 		}
-
-		r = read(f, b, 1024);
-		o = open(v[2], O_WRONLY | O_APPEND);
-
-	} while (r > 0);
-	free(b);
-	clos(f);
-	clos(o);
-	return (0);
+	if (a == -1)
+	{
+		dprintf(STDERR_FILENO, READ, v[2]);
+		exit(98);
+	}
+	f = close(f);
+	t = close(t);
+	if (f != NULL)
+	{
+		dprintf(STDERR_FILENO, CLOSE, f);
+		exit(100);
+	}
+	if (t != NULL)
+	{
+		dprintf(STDERR_FILENO, CLOSE, f);
+		exit(100);
+	}
+	return (EXIT_SUCCESS)
 }

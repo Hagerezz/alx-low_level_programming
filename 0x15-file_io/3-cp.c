@@ -2,14 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char *creat_clos(char *f, int a);
+char *cc(char *f, int a);
 /**
- * creat_clos - allocate and close
+ * cc - allocate and close
  * @f: pointer
  * @a: file
  * Return: pointer
  */
-char *creat_clos(char *f, int a)
+char *cc(char *f, int a)
 {
 	char *b = malloc(sizeof(char) * 1024);
 	int c = close(a);
@@ -28,48 +28,47 @@ char *creat_clos(char *f, int a)
 }
 /**
  * main - copy
- * @x: number
- * @y: pointer
+ * @c: number
+ * @v: pointer
  * Return: 0 (success)
  */
-int main(int x, char *y[])
+int main(int c, char *v[])
 {
-	char *b = creat_clos(y[2]);
-	int f = open(y[1], O_RDONLY);
-	int r = read(f, b, 1024);
-	int o = open(y[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	int w = write(o, b, r);
+	int w;
+	char *b = cc(v[2]);
+        int f = open(v[1], O_RDONLY);
+        int r = read(f, b, 1024);
+        int o = open(v[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
-	if (x != 3)
+	if (c != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	while (1)
-	{
-		if (r == -1 || f == -1)
+	do {
+		if (f == -1 || r == -1)
 		{
 			dprintf(STDERR_FILENO,
-				"Error: Can't read from file %s\n", y[1]);
+				"Error: Can't read from file %s\n", v[1]);
 			free(b);
 			exit(98);
 		}
-		if (r == 0)
-			break;
 
-		o = open(y[2], O_WRONLY | O_APPEND);
-
+		w = write(o, b, r);
 		if (o == -1 || w == -1)
 		{
 			dprintf(STDERR_FILENO,
-				"Error: Can't write to %s\n", y[2]);
+				"Error: Can't write to %s\n", v[2]);
 			free(b);
 			exit(99);
 		}
-	}
+
+		r = read(f, b, 1024);
+		o = open(v[2], O_WRONLY | O_APPEND);
+
+	} while (r > 0);
 	free(b);
-	creat_clos(f);
-	creat_clos(o);
+	cc(f);
+	cc(o);
 	return (0);
-}
 }

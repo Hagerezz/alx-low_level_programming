@@ -16,7 +16,7 @@ char *creat(char *f)
 
 	if (!b)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", f);
 		exit(99);
 	}
 	return (b);

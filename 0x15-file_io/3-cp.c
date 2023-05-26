@@ -49,12 +49,12 @@ int main(int c, char **v)
 	}
 	f = close(f);
 	t = close(t);
-	if (f != NULL)
+	if (f)
 	{
 		dprintf(STDERR_FILENO, CLOSE, f);
 		exit(100);
 	}
-	if (t != NULL)
+	if (t)
 	{
 		dprintf(STDERR_FILENO, CLOSE, f);
 		exit(100);

@@ -47,12 +47,7 @@ int main(int argc, char *argv[])
 	}
 	from = close(from);
 	to = close(to);
-	if (from)
-	{
-		dprintf(STDERR_FILENO, CLOSE, from);
-		exit(100);
-	}
-	if (to)
+	if (from || to)
 	{
 		dprintf(STDERR_FILENO, CLOSE, from);
 		exit(100);

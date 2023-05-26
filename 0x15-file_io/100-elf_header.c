@@ -18,7 +18,7 @@ void print_entr(unsigned long int e_entry, unsigned char *e_ident);
 void close_el(int elf);
 
 /**
- * check_elf - Check
+ * check_el - Check
  * @e_ident: pointer
  */
 void check_el(unsigned char *e_ident)

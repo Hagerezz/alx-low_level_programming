@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 	}
 	if (b == -1)
 	{
-		dprintf(STDERR_FILENO, READ, argv[2]);
+		dprintf(STDERR_FILENO, READ, argv[1]);
 		exit(98);
 	}
 	from = close(from);

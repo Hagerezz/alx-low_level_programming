@@ -9,7 +9,7 @@
 #define USE "Usage: cp file_from file_to\n"
 #define READ "Error: Can't read from file %s\n"
 #define WRITE "Error: Can't write to %s\n"
-#define CLOSE "Can't close fd %d\n"
+#define CLOSE "Error: Can't close fd %d\n"
 #define PER (O_WRONLY | O_CREAT | O_TRUNC)
 #define PERS (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
 

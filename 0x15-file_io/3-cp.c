@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 	from = open(argv[1], O_RDONLY);
-	if (f == -1)
+	if (from == -1)
 	{
 		dprintf(STDERR_FILENO, READ, argv[1]);
 		exit(98);
@@ -32,9 +32,9 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, WRITE, argv[2]);
 		exit(99);
 	}
-	while ((b = read(f, b, 1024)) > 0)
+	while ((b = read(from, bufb, 1024)) > 0)
 	{
-		if (write(t, buf, b) != b)
+		if (write(to, buf, b) != b)
 		{
 			dprintf(STDERR_FILENO, WRITE, argv[2]);
 			exit(99);
